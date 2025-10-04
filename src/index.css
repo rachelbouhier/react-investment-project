@@ -90,3 +90,8 @@ body {
 .center {
   text-align: center;
 }
+
+#result th,
+#result td {
+  padding: 0.5rem 1rem;
+}

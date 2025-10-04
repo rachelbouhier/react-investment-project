@@ -2,12 +2,28 @@ import { useState } from "react"
 import Header from "./components/Header"
 import ResultsTable from "./components/ResultsTable"
 import UserInput from "./components/UserInput"
+import { calculateInvestmentResults } from "./util/investment";
 
 function App() {
   const [initialInvestment, setInitialInvestment] = useState("");
   const [annualInvestment, setAnnualInvestment] = useState("");
   const [expectedReturn, setExpectedReturn] = useState("");
   const [duration, setDuration] = useState("");
+
+  const annualData =
+  initialInvestment &&
+  annualInvestment &&
+  expectedReturn &&
+  duration
+    ? calculateInvestmentResults({
+        initialInvestment: initialInvestment,
+        annualInvestment: annualInvestment,
+        expectedReturn: expectedReturn,
+        duration: duration,
+      })
+    : null;
+
+  console.log(annualData);
 
   return (
     <>
@@ -22,7 +38,7 @@ function App() {
             <UserInput label="duration" title="DURATION"onChange={setDuration}/>
           </div>
         </div>
-      <ResultsTable />
+      <ResultsTable annualData={annualData} />
     </>
   )
 }
