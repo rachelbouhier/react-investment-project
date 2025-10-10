@@ -1,6 +1,8 @@
-import { formatter } from "../util/investment";
+import { calculateInvestmentResults, formatter } from "../util/investment";
 
-export default function ResultsTable({ annualData }) {
+export default function ResultsTable({ userInput }) {
+    const annualData = calculateInvestmentResults(userInput);
+
     return (
         <table id="result">
             <thead>
